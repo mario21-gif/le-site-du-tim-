@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Le site du tim.com</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0 0 60px 0;
+      background: url('https://i.postimg.cc/JyZhSPmw/unnamed-1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      transition: background-image 0.3s ease;
+      color: #000;
+    }
+
+    /* === Menu === */
+    .menu {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 180px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      padding: 10px;
+      z-index: 100;
+    }
+    #hamburger {
+      width: 100%;
+      font-size: 20px;
+      padding: 8px 0;
+      border: none;
+      background: #3498db;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+    #hamburger:hover {
+      background: #2980b9;
+    }
+    .menu-item, .menu-subitem {
+      width: 100%;
+      padding: 8px 0;
+      border: none;
+      background: #ecf0f1;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      text-align: left;
+      padding-left: 10px;
+      transition: background 0.2s;
+    }
+    .menu-item:hover, .menu-subitem:hover {
+      background: #bdc3c7;
+    }
+    .submenu {
+      display: none;
+      margin-left: 10px;
+    }
+
+    /* === Contenu === */
+    .content {
+      margin: 60px 20px 20px 220px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 12px;
+      position: relative;
+      max-width: 850px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      animation: fadeIn 0.4s ease;
+    }
+    .content h2 {
+      margin-top: 0;
+      font-size: 26px;
+      color: #2c3e50;
+    }
+    .content img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 15px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .content p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .content a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: #3498db;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .content a:hover {
+      background: #2980b9;
+    }
+
+    /* === Poubelle bleue === */
+    #trash {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 32px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #3498db;
+      transition: color 0.3s;
+    }
+    #trash:hover {
+      color: #2980b9;
+    }
+
+    #audioPlayer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #audioPlayer audio {
+      width: 100%;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* === Bouton Clic Ici en haut et centré === */
+    #topButton {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      z-index: 300;
+      transition: background 0.3s;
+    }
+    #topButton:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bouton Clic Ici -->
+  <a href="https://youareanidiot.cc/" target="_blank" id="topButton">Clic ici</a>
+
+  <div class="menu">
+    <button id="hamburger">☰ Menu</button>
+    <button data-page="accueil" class="menu-item">🏠 Accueil</button>
+    <div class="submenu" id="menuItems">
+      <button data-toggle="fnf" class="menu-item">🎮 Jeux ▾</button>
+      <div class="submenu" id="fnf">
+        <button data-page="fnf-pc" class="menu-subitem">FNF PC</button>
+        <button data-page="fnf-mobile" class="menu-subitem">FNF Mobile</button>
+      </div>
+      <button data-toggle="virus" class="menu-item">🦠 Virus ▾</button>
+      <div class="submenu" id="virus">
+        <button data-page="fake-virus" class="menu-subitem">Faux Virus</button>
+        <button data-page="real-virus" class="menu-subitem">Vrai Virus</button>
+      </div>
+      <button data-page="jeux-horreur" class="menu-item">😱 Jeux d'horreur</button>
+    </div>
+  </div>
+
+  <button id="trash">🗑</button>
+
+  <div class="content" id="content">
+    <!-- Contenu initial d'accueil -->
+    <h1>Bienvenue sur le site du tim.com</h1>
+    <p>Choisis une option dans le menu à gauche.</p>
+    <a href="https://lesitedutim.com" target="_blank">Visiter Le Site du Tim.com</a><br><br>
+    <a href="https://www.youtube.com/@Mroofdiscord">📺 Ma chaîne YouTube</a>
+  </div>
+
+  <div id="audioPlayer">
+    <audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+  </div>
+
+  <!-- === Popup de consentement === -->
+  <div id="consent-popup" style="display:none; position: fixed; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.95); border: 1px solid #ccc; padding: 15px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 2000; display:flex; align-items:center; justify-content:space-between; gap:10px;">
+    <img src="consent_fr.webp" alt="Consentement" style="max-width:50px;">
+    <span>En continuant sur ce site, vous acceptez notre utilisation des cookies.</span>
+    <div>
+      <button id="accept-btn" style="margin-left:10px;padding:5px 10px;border-radius:6px;border:none;background:#3498db;color:white;cursor:pointer;">Accepter</button>
+      <button id="decline-btn" style="margin-left:5px;padding:5px 10px;border-radius:6px;border:none;background:#ccc;color:#000;cursor:pointer;">Refuser</button>
+    </div>
+  </div>
+
+  <script>
+    const content = document.getElementById('content');
+    const body = document.body;
+
+    const pages = {
+      'accueil': {
+        titre: 'Bienvenue sur le site du tim.com',
+        texte: 'Choisis une option dans le menu à gauche.',
+        image: '',
+        lien: 'https://lesitedutim.com',
+        lienTexte: 'Visiter Le Site du Tim.com',
+        youtube: 'https://www.youtube.com/@Mroofdiscord',
+        fond: 'https://i.postimg.cc/JyZhSPmw/unnamed-1.jpg'
+      },
+      'fnf-pc': {
+        titre: '🎮 Friday Night Funkin\' - PC',
+        texte: "Friday Night Funkin' est un jeu de rythme culte où tu dois suivre la musique et battre tes adversaires.",
+        image: 'https://i.postimg.cc/S2P8wRbv/images.png',
+        fond: 'https://i.postimg.cc/S2P8wRbv/images.png',
+        liens: [
+          { url: 'https://1drv.ms/u/c/675880fa444993ab/ERi583rfRrNLtfbO4XVTCBQBx3NrR96cdpWiqNbg0BOb8g?e=1dTYT0', texte: '⬇ Télécharger FNF PC - Version 1' },
+          { url: 'https://drive.google.com/file/d/1N3pIoTkvMJZ19QjKDEhIVV4AKDuZ3kq2/view?usp=drive_link', texte: '⬇ Télécharger FNF PC - Version 2' },
+          { url: 'https://drive.google.com/file/d/1xjZiYRm3yWIzpmIdo4VfBNupUKck_Dxr/view?usp=drive_link', texte: '⬇ Télécharger FNF PC - Version 3' },
+          { url: 'https://drive.google.com/file/d/1xDL9C9z0cIYfevj3jpts_w2UOp5mD4kP/view?usp=drive_link', texte: '⬇ Télécharger FNF PC - Version 4' },
+          { url: 'https://e.pcloud.link/publink/show?code=XZtwxOZWP2HP8kCV2BXxBMuHCxgrLO16A0V', texte: '⬇ Télécharger FNF PC - Version 5' },
+          { url: 'https://example.com/fnf-v6', texte: '⬇ Télécharger FNF PC - Version 6' },
+          { url: 'https://drive.google.com/file/d/1cJyGQGPuJrzar2UxjhFw5YSIT2qYP8eB/view?usp=drive_link', texte: '⬇ Télécharger FNF PC - Version 7' },
+          { url: 'https://1drv.ms/u/c/675880fa444993ab/EfTUWHGh4tRGrXo6--m0AiIBhKgO81RS5ZO6zBNrcmtDlg?e=wOacLh', texte: '⬇ Télécharger FNF PC - Version 8' }
+        ]
+      },
+      'fnf-mobile': {
+        titre: '📱 Friday Night Funkin\' - Mobile',
+        texte: 'Version mobile avec commandes tactiles.',
+        image: 'https://i.postimg.cc/S2P8wRbv/images.png',
+        lien: 'https://drive.google.com/file/d/1zYJjELsTXnspDK90ZRa5oiNqdVPqS_vn/view',
+        lienTexte: '⬇ Télécharger FNF Mobile',
+        fond: 'https://i.postimg.cc/S2P8wRbv/images.png'
+      },
+      'fake-virus': {
+        titre: '💻 Faux Virus',
+        texte: 'Un faux virus inoffensif pour faire peur à tes amis 😂',
+        image: 'https://i.postimg.cc/8FNzzSbP/Virus-ordinateur.jpg',
+        lien: 'https://fakeupdate.net/',
+        lienTexte: '👉 Voir le faux virus',
+        fond: 'https://i.postimg.cc/8FNzzSbP/Virus-ordinateur.jpg'
+      },
+      'real-virus': {
+        titre: '⚠️ Vrai Virus',
+        texte: '⚠️ Attention : dangereux, ne pas installer.',
+        image: 'https://i.postimg.cc/f36LMj9s/t-l-chargement-1.png',
+        lien: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        lienTexte: '⚡ Télécharger ici',
+        fond: 'https://i.postimg.cc/8FNzzSbP/Virus-ordinateur.jpg'
+      },
+      'jeux-horreur': {
+        titre: '😱 Jeux d\'horreur',
+        texte: 'Un jeu d’horreur pour les plus courageux.',
+        image: 'https://i.postimg.cc/mtyqGWhS/t-l-chargement.jpg',
+        lien: 'https://drive.google.com/file/d/1341LNAdqnHa6bRJZSDz2pCScE9Z6fknf/view',
+        lienTexte: '👻 telecharge ici',
+        fond: 'https://i.postimg.cc/mtyqGWhS/t-l-chargement.jpg'
+      }
+    };
+
+    // Toggle sous-menus
+    document.querySelectorAll('[data-toggle]').forEach(btn => {
+      btn.onclick = () => {
+        const sub = document.getElementById(btn.dataset.toggle);
+        sub.style.display = sub.style.display === 'block' ? 'none' : 'block';
+      };
+    });
+
+    // Navigation pages
+    document.querySelectorAll('[data-page]').forEach(btn => {
+      btn.onclick = () => {
+        const p = pages[btn.dataset.page];
+        if (btn.dataset.page === "accueil") {
+          content.innerHTML = `<h1>${p.titre}</h1><p>${p.texte}</p>
+            <a href="${p.lien}" target="_blank">${p.lienTexte}</a><br><br>
+            <a href="${p.youtube}" target="_blank">📺 Ma chaîne YouTube</a>`;
+          body.style.backgroundImage = `url('${p.fond}')`;
+          return;
+        }
+
+        let liensHTML = "";
+        if (p.liens && Array.isArray(p.liens)) {
+          p.liens.forEach(l => {
+            liensHTML += `<a href="${l.url}" target="_blank">${l.texte}</a><br>`;
+          });
+        } else if (p.lien && p.lienTexte) {
+          liensHTML = `<a href="${p.lien}" target="_blank">${p.lienTexte}</a>`;
+        }
+
+        content.innerHTML = `<h2>${p.titre}</h2>
+          ${p.image ? `<img src="${p.image}" alt="${p.titre}">` : ''}
+          <p>${p.texte}</p>${liensHTML}<br><br>
+          <a href="https://lesitedutim.com" target="_blank">Visiter Le Site du Tim.com</a>`;
+        body.style.backgroundImage = `url('${p.fond}')`;
+      };
+    });
+
+    // Toggle menu principal avec ☰
+    document.getElementById("hamburger").onclick = () => {
+      const menuItems = document.getElementById("menuItems");
+      menuItems.style.display = menuItems.style.display === "block" ? "none" : "block";
+    };
+
+    // Rickroll avec 🗑
+    document.getElementById("trash").onclick = () => {
+      window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+    };
+
+    // === Son de pet sur tous les boutons du menu + 🗑 + ☰ ===
+    const fartSound = new Audio("https://e.pcloud.link/publink/show?code=XZcgxOZAdGM9PDuSV70VKJFXtff94hvyGwV");
+
+    document.querySelectorAll(".menu-item, .menu-subitem, #hamburger, #trash").forEach(btn => {
+      btn.addEventListener("click", () => {
+        fartSound.currentTime = 0;
+        fartSound.play();
+      });
+    });
+
+    // === Popup de consentement ===
+    if (!localStorage.getItem('cookieConsent')) {
+      document.getElementById('consent-popup').style.display = 'flex';
+    }
+
+    document.getElementById('accept-btn').addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      document.getElementById('consent-popup').style.display = 'none';
+    });
+
+    document.getElementById('decline-btn').addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'declined');
+      document.getElementById('consent-popup').style.display = 'none';
+    });
+
+  </script>
+</body>
+</html>
